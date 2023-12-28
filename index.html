@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="Vue.js"></script>
+<script src="vuejs.js" defer></script>
+<title>Title</title>
+</head>
+<body>
+<div id="vue">
+<div v-if="!page">
+
+    <div v-for="o in 48">
+    <button v-for="i in 7" @click="changepage(o*7+i-7,false)"> {{ new Date(2024,0,o*7+i-8).toLocaleDateString() }}</button>
+    </div>
+
+</div>
+<div v-else>
+<div>
+    <button class="lowmargin" @click="changepage(page-1,true)" v-if="page-1">Prévio</button>
+    <button class="lowmargin" @click="changepage(page*0,true)" >Voltar ao menu</button>
+    <button class="lowmargin" @click="changepage(page+1,true)" v-if="page!=334">Proximo</button>
+</div>
+<table style="text-align: center; width: 70vw; margin: 0vw 15vw">
+<thead>
+<td colspan="2" style="text-decoration: underline; font-weight: bolder; font-size: larger;">PROJETO DE TEXTO</td>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">Cópia - com barras - da frase temática:<br><textarea style="width: 65vw;height: 4.5vh;" @change="texts.theme=$event.target.value" v-bind:value="texts.theme"></textarea></td>
+</tr>
+<tr>
+<td colspan="1">Aspectos principais dos textos motivadores
+<div v-for="i in 4" style="text-align: left;"> &nbsp;Texto {{i}}:<input type="text" style="width: 25vw; height: 1.5vh; font-size: 1.5vh;" @change="texts.interpretations[i-1]=$event.target.value" v-bind:value="texts.interpretations[i-1]"></div>
+</td>
+<td colspan="1">MAPA MENTAL COM REPERTÓRIOS <br><textarea @change="texts.repertoire=$event.target.value" v-bind:value="texts.repertoire" style="width: 38vw;height: 7.5vh;"></textarea></td>
+</tr>
+<tr>
+<td colspan="2">Ponto de partida (minha tese): <br><textarea style="width: 65vw;height: 4.5vh;" @change="texts.thesis=$event.target.value" v-bind:value="texts.thesis"></textarea></td>
+</tr>
+
+<tr>
+    <td colspan="2">Dois argumentos que provam a assertividade da tese - bifurcação ( isto é: "por causa deles, minha tese faz sentido")
+    <div v-for="i in 2" style="text-align: left;"> &nbsp;Arg. {{i}}:<textarea @change="texts.arguments[i-1]=$event.target.value" v-bind:value="texts.arguments[i-1]" style="width: 65vw;height: 4.5vh;"></textarea></div>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">Duas intervenções diretamente relacionadas à discussão apresentada:<br>(Uma das intervenções precisa de preencher os 5 elementos)
+    <div v-for="i in 2" style="text-align: left;"><br>&nbsp;Intervenção para o arg. {{i}}:<br>
+    <div v-for="o in 5" style="text-align: left; line-height: 1.5;">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{o}}. &nbsp;{{["Ação","Agente","Modo","Finalidade","Detalhamento"][o-1]}}: <input type="text" style="width: 55vw; height: 1.5vh; font-size: 1.5vh; position: absolute; left: 25vw;" @change="texts.interventions[i-1][o-1]=$event.target.value" v-bind:value="texts.interventions[i-1][o-1]"></span>
+    </div>
+    </div>
+    <br>
+    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+<style>
+button{
+margin: 2.5px 10px;
+}
+.lowmargin{
+    margin: 2px 5px;
+}
+body{
+font-variant-numeric: tabular-nums;
+text-align: center;
+margin: 0px;
+}
+table, th, td{
+border: 2px solid;
+border-color: #000;
+border-collapse: collapse;
+padding: 0px;
+}
+textarea {
+  resize: none;
+}
+</style>
+</html>
